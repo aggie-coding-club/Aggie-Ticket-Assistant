@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "file-structure",
+    "slug": "file-structure",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "file-structure"
+}
