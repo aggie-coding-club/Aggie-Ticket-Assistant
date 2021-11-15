@@ -1,0 +1,11 @@
+[
+    {"1":{
+        "title":"Alabama", 
+        "date":"Nov 6, 2021",
+        "status":"upcoming",
+        "opponentlogo":require('./images/alabama.png'),
+        "homeScore":0,
+        "opponentScore":0
+    }},
+    {}
+]
