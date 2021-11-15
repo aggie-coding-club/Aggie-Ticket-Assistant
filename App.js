@@ -22,9 +22,6 @@ export default function App() {
         <Stack.Screen name = "Header" component={Header}/>
       </Stack.Navigator>
     </NavigationContainer>
-    // <View>
-    //   <Text>elon</Text>
-    // </View>
   );
 }
 
