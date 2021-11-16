@@ -1,11 +1,23 @@
-[
-    {"1":{
+{
+     "1":{
         "title":"Alabama", 
-        "date":"Nov 6, 2021",
-        "status":"upcoming",
-        "opponentlogo":require('./images/alabama.png'),
+        "date":"2021-10-09",
+        "opponentLogo":"alabama.png",
         "homeScore":0,
         "opponentScore":0
-    }},
-    {}
-]
+    },
+    "2":{
+        "title":"Auburn", 
+        "date":"2021-11-06",
+        "opponentLogo":"auburn.png",
+        "homeScore":0,
+        "opponentScore":0
+    },
+    "3": {
+        "title": "Ole Miss",
+        "date": "2021-11-13",
+        "opponentLogo": "mississippi.png",
+        "homeScore": 0,
+        "opponentScore": 0
+    }
+}
