@@ -28,7 +28,6 @@ import dashboard from './components/dashboard';
 import before_game from './components/before-game';
 import Header from './components/Header';
 
-
 const Stack = createNativeStackNavigator();
 export default function App() {
   return (
