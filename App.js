@@ -3,9 +3,7 @@ import React, { useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StyleSheet, Text, View } from 'react-native';
-import { getAnalytics } from "firebase/analytics";
 import { initializeApp } from "firebase/app";
-import { getDatabase, ref, set } from "firebase/database";  
 
 // Firebase configuration
 const firebaseConfig = {
@@ -20,8 +18,6 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-const database = getDatabase(app);
 
 //Components
 import dashboard from './components/dashboard';

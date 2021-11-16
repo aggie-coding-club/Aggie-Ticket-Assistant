@@ -3,6 +3,12 @@ import {View, Text, Image, StyleSheet, TouchableOpacity} from 'react-native'
 import Constants from 'expo-constants'
 import { NavigationContainer } from '@react-navigation/native';
 import dashboard from './dashboard';
+import {getStorage, ref} from "firebase/storage";
+
+const storage = getStorage();
+
+headerRef = ref(storage, 'images/tamu_white.png')
+const url = await headerRef.getDownloadURL();
 
 const Header = ({navigation}) =>{
   return(
@@ -10,7 +16,7 @@ const Header = ({navigation}) =>{
         <TouchableOpacity activeOpacity={0.5} onPress={() => 
                 navigation.navigate('Dashboard') 
             }>
-            <Image source={require('./images/tamu_white.png')} style={styles.img}/>
+            <Image source={{uri: url}} style={styles.img}/>
         </TouchableOpacity>
     </View>
   );
