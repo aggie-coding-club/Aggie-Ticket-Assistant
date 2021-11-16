@@ -2,13 +2,12 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Image } from 'react-native';
 
 //Components
 import dashboard from './components/dashboard';
 import before_game from './components/before-game';
 import Header from './components/Header';
-
 
 const Stack = createNativeStackNavigator();
 export default function App() {
