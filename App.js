@@ -3,21 +3,7 @@ import React, { useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StyleSheet, Text, View } from 'react-native';
-import { initializeApp } from "firebase/app";
 
-// Firebase configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyDYxpGx5NWBb9QbhkQEvEO5hQPi8Tv1Sxg",
-  authDomain: "aggieticketassistant.firebaseapp.com",
-  projectId: "aggieticketassistant",
-  storageBucket: "aggieticketassistant.appspot.com",
-  messagingSenderId: "74178268872",
-  appId: "1:74178268872:web:91e814b861ac6e70a0dffd",
-  measurementId: "G-Y7XK0SMWSD",
-  databaseURL: "https://aggieticketassistant-default-rtdb.firebaseio.com/"
-};
-
-const app = initializeApp(firebaseConfig);
 
 //Components
 import dashboard from './components/dashboard';
