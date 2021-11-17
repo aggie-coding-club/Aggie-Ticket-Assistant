@@ -2,8 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { StyleSheet, Text, View } from 'react-native';
-import { getAnalytics } from "firebase/analytics";
+import { StyleSheet, Text, View, Button } from 'react-native';
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, set } from "firebase/database";  
 
@@ -20,7 +19,6 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
 const database = getDatabase(app);
 
 //Components
@@ -32,12 +30,17 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{
-        headerShown: false
-      }}>
+      <Stack.Navigator screenOptions={({navigation}) => ({
+        headerTitle: 'ATAAA',
+        headerRight: () => (
+          <Button
+            onPress={() => navigation.navigate('Dashboard')}
+            title='O'
+            color='#fcba03'/>
+        )
+      })}>
         <Stack.Screen name = "Dashboard" component={dashboard}/>
         <Stack.Screen name = "Before Game" component={before_game}/>
-        <Stack.Screen name = "Header" component={Header}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
