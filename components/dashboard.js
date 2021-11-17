@@ -40,7 +40,7 @@ const dashboard = ({navigation}) => {
   return(
 
     <View>
-      <Header />
+      <Header/>
       <Text style={styles.header}>Live</Text>
       <View style={styles.line}/>
       <Game_znippet title={'Live'} opponentlogo={'./images/new_mexico.png'} homeScore={69} opponentScore={0} navigation={navigation}/>
