@@ -2,7 +2,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import React, { useState } from 'react';
 import {View, Text, Image, StyleSheet, FlatList, Alert, Button,p} from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import Header from './Header';
 
 
 const before_game = ({route}) => {
@@ -29,7 +28,7 @@ const before_game = ({route}) => {
         </View>
         <Text style={styles.headText}>PULLING</Text>
         <View style={styles.line}/>
-        <TouchableOpacity style={styles.button} onPress = {() => navigation.navigate('Dashboard')}>
+        <TouchableOpacity style={styles.button} onPress = {() => navigation.navigate('Wizard landing', {navigation: navigation})}>
           <Text style={styles.lil_text2}>Get Pulling Info</Text>
         </TouchableOpacity>
     </View>
