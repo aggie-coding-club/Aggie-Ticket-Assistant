@@ -47,7 +47,7 @@ export default function App() {
         headerTitle: () => 
         <TouchableOpacity onPress={() => navigation.navigate('Dashboard')}>
           <Image
-            style={{ width: 50, height: 50, alignSelf: 'center' }}
+            style={{ width: 60, height: 60, alignSelf: 'center' }}
             source={{uri:url}}
           />
         </TouchableOpacity>,

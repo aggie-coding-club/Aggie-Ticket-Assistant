@@ -13,6 +13,7 @@ const Game_znippet = ({title, date, opponentlogo, homeScore, opponentScore, navi
       {
         randomParam: title,
         randomParam2: 'eee',
+        navigation: navigation
       })}>
       <Text>{title}</Text>
       <View style={styles.horizontal_content}>
