@@ -1,59 +1,64 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { render } from 'react-dom';
 import {View, Text, Image, StyleSheet, Button} from 'react-native'
 import { FlatList, TouchableOpacity } from 'react-native-gesture-handler';
 import before_game from './before-game';
 import Header from './Header';
+import {app} from "../firebase"
+import {ref, getDatabase, get, child} from "firebase/database"
+import {getStorage, getDownloadURL} from "firebase/storage"
 
-// const tempPath = './images/tamu_red.png'
-const Game_znippet = ({title, date, opponentlogo, homeScore, opponentScore, navigation}) => (
+const db = getDatabase();
+const dbRef = ref(getDatabase());
+
+const GameSnippet = ({game, navigation}) => {
   <View>
-    <TouchableOpacity style={styles.znippet} onPress={() => 
+    <TouchableOpacity style={styles.snippet} onPress={() => 
       navigation.navigate('Before Game', 
       {
-        randomParam: title,
+        game: game
       })}>
-      <Text>{title}</Text>
+      <Text>{game.title}</Text>
       <View style={styles.horizontal_content}>
-        <Image source={require('./images/tamu_red.png')} style={styles.lil_image}/>
-        <Text style={styles.score}>{homeScore} - {opponentScore}</Text>
+        <Image source={game.homeLogo} style={styles.lil_image}/>
+        <Text style={styles.score}>{game.homeScore} - {game.opponentScore}</Text>
         {/* <img src={tempPath} /> */}
-        <Image source={opponentlogo} style={styles.lil_image}/>
+        <Image source={game.opponentLogo} style={styles.lil_image}/>
       </View>
     </TouchableOpacity>
   </View>
-)
+}
 
 const dashboard = ({navigation}) => {
-  const games = ([
-    {id: 1, title:'Alabama', date:'Nov 6, 2021', status:'upcoming', opponentlogo:require('./images/alabama.png'), homeScore:0, opponentScore:0, nav:navigation},
-    {id: 2, title:'Mississippi', date:'Nov 7, 2021', status:'upcoming', opponentlogo:require('./images/mississippi.png'), homeScore:0, opponentScore:0, nav:navigation}
-  ])
-  // const games = ([
-  //   {id: 1, title:'Alabama', date:'Nov 6, 2021', status:'upcoming', opponentlogo:'./images/alabama.png', homeScore:0, opponentScore:0},
-  //   {id: 2, title:'Mississippi', date:'Nov 7, 2021', status:'upcoming', opponentlogo:'./images/mississippi.png',homeScore:0, opponentScore:0}
-  // ])
+  const [games, setGames] = useState([]);
 
-  const renderDaItem = ({item}) => (
-    // <Game_znippet title={item.date} opponentlogo={require(`${item.opponentlogo}`)} homeScore={item.homeScore} opponentScore={item.opponentScore}/>
-    <Game_znippet title={item.title} date={item.date} opponentlogo={item.opponentlogo} homeScore={item.homeScore} opponentScore={item.opponentScore} navigation={item.nav}/>
-    )
+  useEffect(() => {
+    let isMounted = true;
+    get(dbRef).then((snapshot) => {
+      if(snapshot.exists()) {
+        setGames(snapshot.val().filter(e => e != undefined))
+        return snapshot.val()
+      }
+    });
+    return () => {isMounted = false};
+  },[]);
+  
+  if(games) console.log(games);
   return(
-
     <View>
       <Header />
-      <Text style={styles.header}>Live</Text>
-      <View style={styles.line}/>
-      <Game_znippet title={'Live'} opponentlogo={require('./images/new_mexico.png')} homeScore={69} opponentScore={0} navigation={navigation}/>
+      {/* <Text style={styles.header}>Live</Text> */}
+      {/* <View style={styles.line}/> */}
+      {/* <Game_znippet title={'Live'} opponentlogo={require('./images/new_mexico.png')} homeScore={69} opponentScore={0} navigation={navigation}/> */}
       <Text style={styles.header}>Upcoming</Text>
       <View style={styles.line}/>
-      <FlatList data={games} renderItem = {renderDaItem}/>
+      <FlatList data={games} renderItem = {({item}) => <GameSnippet game={item} navigation={navigation} />}/>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
-  znippet: {
+  snippet: {
       height: 90,
       backgroundColor: '#dedede',
       padding: 20,
