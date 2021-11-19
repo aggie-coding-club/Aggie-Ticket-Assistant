@@ -12,6 +12,7 @@ const Game_znippet = ({title, date, opponentlogo, homeScore, opponentScore, navi
       navigation.navigate('Before Game', 
       {
         randomParam: title,
+        randomParam2: 'eee',
       })}>
       <Text>{title}</Text>
       <View style={styles.horizontal_content}>
@@ -40,7 +41,6 @@ const dashboard = ({navigation}) => {
   return(
 
     <View>
-      <Header/>
       <Text style={styles.header}>Live</Text>
       <View style={styles.line}/>
       <Game_znippet title={'Live'} opponentlogo={'./images/new_mexico.png'} homeScore={69} opponentScore={0} navigation={navigation}/>
