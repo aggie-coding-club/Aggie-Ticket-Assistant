@@ -60,6 +60,7 @@ const dashboard = ({navigation}) => {
   },[]);
   
   if(games) console.log(games);
+
   return(
     <View>
       <Header />
