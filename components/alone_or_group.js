@@ -3,26 +3,23 @@ import React, { useState } from 'react';
 import {View, Text, Image, StyleSheet, FlatList, Alert, Button,p} from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
-const Wizard_landing = ({route}) => {
+const Alone_Group = ({route}) => {
     const {navigation} = route.params
     return (
         <View style={styles.topcontent}>
             <View style={styles.top_horiz}>
-                <Text style={styles.text}>Pulling Wizard</Text>
+                <Text style={styles.text}>Group Status</Text>
             </View>
             <View style={styles.top_horiz}>
                 <Text>
-                    Lorem ipsum dolor sit amet, consectetur
-                    adipiscing elit. Aenean et purus sed orci
-                    condimentum efficitur vitae eget dolor.
-                    Maecenas ornare nunc non velit sodales
-                    egestas. Phasellus mattis vel lacus eu.
+                    Are you pulling alone or with a group?
                 </Text>
             </View>
-            <TouchableOpacity style={styles.button} onPress = {() => navigation.navigate('Alone Group',{
-              navigation: navigation
-            })}>
-                <Text style={styles.lil_text2}>Get Started</Text>
+            <TouchableOpacity style={styles.button} onPress = {() => navigation.navigate('Dashboard')}>
+                <Text style={styles.lil_text2}>Alone</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.button} onPress = {() => navigation.navigate('Dashboard')}>
+                <Text style={styles.lil_text2}>With Group</Text>
             </TouchableOpacity>
         </View>
     );
@@ -32,7 +29,9 @@ const styles = StyleSheet.create({
     topcontent: {
         flexDirection: 'column',
         justifyContent: 'flex-start',
-        padding: 30
+        padding: 30,
+        alignContent: 'center',
+        alignItems: 'center'
       },
       top_horiz: {
         flexDirection: 'row',
@@ -57,7 +56,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
         width: 250,
-        alignSelf: 'center'
+        alignSelf: 'center',
       },
       lil_text2: {
         color: '#ffffff',
@@ -66,4 +65,4 @@ const styles = StyleSheet.create({
       }
 })
 
-export default Wizard_landing;
+export default Alone_Group;
