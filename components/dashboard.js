@@ -9,10 +9,27 @@ import {ref, getDatabase, get, child} from "firebase/database"
 import {getStorage, getDownloadURL} from "firebase/storage"
 
 const db = getDatabase();
+const storage = getStorage();
 const dbRef = ref(getDatabase());
 
 const GameSnippet = ({game, navigation}) => {
-  <View>
+  const [homeLogo, setHomeLogo] = useState("");
+  const [opponentLogo, setOpponentLogo] = useState("")
+
+  var homeLogoRef = ref(storage, game.homeLogo);
+  var opponentLogoRef = ref(storage, game.opponentLogo);
+  
+  getDownloadURL(homeLogoRef).then((url) => {
+    setHomeLogo(url);
+    return url; // TODO figure out a way to set image uri here
+  });
+
+  getDownloadURL(opponentLogoRef).then((url) => {
+    setOpponentLogo(url);
+    return url;
+  })
+
+  return(<View>
     <TouchableOpacity style={styles.snippet} onPress={() => 
       navigation.navigate('Before Game', 
       {
@@ -20,14 +37,13 @@ const GameSnippet = ({game, navigation}) => {
       })}>
       <Text>{game.title}</Text>
       <View style={styles.horizontal_content}>
-        <Image source={game.homeLogo} style={styles.lil_image}/>
+        <Image source={{uri: homeLogo}} style={styles.lil_image}/>
         <Text style={styles.score}>{game.homeScore} - {game.opponentScore}</Text>
         {/* <img src={tempPath} /> */}
-        <Image source={game.opponentLogo} style={styles.lil_image}/>
+        <Image source={{uri: opponentLogo}} style={styles.lil_image}/>
       </View>
     </TouchableOpacity>
-  </View>
-}
+  </View>)}
 
 const dashboard = ({navigation}) => {
   const [games, setGames] = useState([]);
