@@ -5,6 +5,31 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const Alone_Group = ({route}) => {
     const {navigation} = route.params
+    const group_default = [
+        {
+            id: 1,
+            Name: 'Person 1',
+            Puller: ' - Puller',
+            Classification: 'Classification',
+            SportsPass: 'Sports Pass Status'
+        },
+        {
+            id: 2,
+            Name: 'Person 2',
+            Puller: '',
+            Classification: 'Classification',
+            SportsPass: 'Sports Pass Status'
+        }
+    ]
+    const alone_default = [
+        {
+            id: 1,
+            Name: 'Name',
+            Puller: ' - Puller',
+            Classification: 'Classification',
+            SportsPass: 'Sports Pass Status'
+        },
+    ]
     return (
         <View style={styles.topcontent}>
             <View style={styles.top_horiz}>
@@ -16,11 +41,13 @@ const Alone_Group = ({route}) => {
                 </Text>
             </View>
             <TouchableOpacity style={styles.button} onPress = {() => navigation.navigate('Group',{
-                navigation: navigation
+                people: alone_default,
+                navigation: navigation,
             })}>
                 <Text style={styles.lil_text2}>Alone</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.button} onPress = {() => navigation.navigate('Group',{
+                people: group_default,
                 navigation: navigation
             })}>
                 <Text style={styles.lil_text2}>With Group</Text>
