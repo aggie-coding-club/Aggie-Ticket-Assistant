@@ -15,10 +15,14 @@ const Alone_Group = ({route}) => {
                     Are you pulling alone or with a group?
                 </Text>
             </View>
-            <TouchableOpacity style={styles.button} onPress = {() => navigation.navigate('Dashboard')}>
+            <TouchableOpacity style={styles.button} onPress = {() => navigation.navigate('Group',{
+                navigation: navigation
+            })}>
                 <Text style={styles.lil_text2}>Alone</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.button} onPress = {() => navigation.navigate('Dashboard')}>
+            <TouchableOpacity style={styles.button} onPress = {() => navigation.navigate('Group',{
+                navigation: navigation
+            })}>
                 <Text style={styles.lil_text2}>With Group</Text>
             </TouchableOpacity>
         </View>

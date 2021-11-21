@@ -26,6 +26,7 @@ import Header from './components/Header';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Wizard_landing from './components/Wizard_landing';
 import Alone_Group from './components/alone_or_group';
+import Group from './components/group';
 
 const Stack = createNativeStackNavigator();
 export default function App() {
@@ -58,6 +59,7 @@ export default function App() {
         <Stack.Screen name = "Before Game" component={before_game}/>
         <Stack.Screen name = "Wizard landing" component={Wizard_landing}/>
         <Stack.Screen name = "Alone Group" component={Alone_Group}/>
+        <Stack.Screen name = "Group" component={Group}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
