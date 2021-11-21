@@ -3,56 +3,38 @@ import React, { useState } from 'react';
 import {View, Text, Image, StyleSheet, FlatList, Alert, Button,p} from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
-const Person = ({name, puller, classification, sports_pass}) => (
+const Person = ({name, puller, classification, sports_pass, id, people, navigation}) => (
     <View style={styles.person}>
         <View style={styles.puller_info}>
             <Text>{name}{puller}</Text>
             <Text>{classification}</Text>
             <Text>{sports_pass}</Text>
         </View>
-        <TouchableOpacity style={styles.edit_button}>
+        <TouchableOpacity style={styles.edit_button} onPress={() => navigation.navigate('Person Form', {
+            navigation: navigation,
+            people: people,
+            person_id: id
+        })}>
         <Text style={{color:'#500000',fontSize:18, alignSelf: 'center'}}>Edit</Text>
         </TouchableOpacity>
     </View>
 );
 
 const Group = ({route}) => {
-    const {navigation} = route.params
-    // const {people, setPeople} = useState([
-    //     {
-    //         Name: 'Jad Khalili',
-    //         Puller: '- Puller',
-    //         Classification: 'Freshman',
-    //         SportsPass: 'Freshman U1'
-    //     },
-    //     {
-    //         Name: 'Harsh Gangaramani',
-    //         Puller: '',
-    //         Classification: 'Freshman',
-    //         SportsPass: 'Freshman U1'
-    //     }
-    // ])
-    const people = [
-            {
-                Name: 'Jad Khalili',
-                Puller: ' - Puller',
-                Classification: 'Freshman',
-                SportsPass: 'Freshman U1'
-            },
-            {
-                Name: 'Harsh Gangaramani',
-                Puller: '',
-                Classification: 'Freshman',
-                SportsPass: 'Freshman U1'
-            }
-        ]
+    const {people, navigation} = route.params
+    const [pimples, setPimples] = useState(people)
     return (
         <View style={styles.topcontent}>
             <View style={styles.top_horiz}>
                 <Text style={styles.text}>Group</Text>
             </View>
             <View style={styles.line}></View>
-            <FlatList data={people} renderItem={({item}) => <Person name={item.Name} puller={item.Puller} classification={item.Classification} sports_pass={item.SportsPass}/>}/>
+            <FlatList data={pimples} renderItem={({item}) => <Person name={item.Name} puller={item.Puller} classification={item.Classification} sports_pass={item.SportsPass} id={item.id} people={pimples} navigation={navigation}/>}/>
+            <View style={styles.bottom}>
+                <TouchableOpacity style={styles.button} onPress = {() => navigation.navigate('Dashboard')}>
+                    <Text style={styles.lil_text2}>Continue</Text>
+                </TouchableOpacity>
+            </View>
         </View>
     );
 }
@@ -86,7 +68,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
         width: 250,
-        alignSelf: 'center'
+        alignSelf: 'center',
     },
     edit_button: {
         backgroundColor: "#ffffff",
@@ -122,6 +104,11 @@ const styles = StyleSheet.create({
     puller_info: {
         flexDirection: 'column',
         alignItems: 'flex-start'
+    },
+    bottom: {
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'flex-end'
     }
 })
 
