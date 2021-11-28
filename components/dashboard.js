@@ -1,59 +1,81 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { render } from 'react-dom';
 import {View, Text, Image, StyleSheet, Button} from 'react-native'
 import { FlatList, TouchableOpacity } from 'react-native-gesture-handler';
 import before_game from './before-game';
 import Header from './Header';
+import {app} from "../firebase"
+import {ref, getDatabase, get, child} from "firebase/database"
+import {getStorage, getDownloadURL} from "firebase/storage"
 
-const tempPath = 'data:image/png;base64,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'
-const Game_znippet = ({title, date, opponentlogo, homeScore, opponentScore, navigation}) => (
-  <View>
-    <TouchableOpacity style={styles.znippet} onPress={() => 
+const db = getDatabase();
+const storage = getStorage();
+const dbRef = ref(getDatabase());
+
+const GameSnippet = ({game, navigation}) => {
+  const [homeLogo, setHomeLogo] = useState("");
+  const [opponentLogo, setOpponentLogo] = useState("")
+
+  var homeLogoRef = ref(storage, game.homeLogo);
+  var opponentLogoRef = ref(storage, game.opponentLogo);
+  
+  getDownloadURL(homeLogoRef).then((url) => {
+    setHomeLogo(url);
+    return url; // TODO figure out a way to set image uri here
+  });
+
+  getDownloadURL(opponentLogoRef).then((url) => {
+    setOpponentLogo(url);
+    return url;
+  })
+
+  return(<View>
+    <TouchableOpacity style={styles.snippet} onPress={() => 
       navigation.navigate('Before Game', 
       {
-        randomParam: title,
-        randomParam2: 'eee',
-        navigation: navigation
+        game: game
       })}>
-      <Text>{title}</Text>
+      <Text>{game.title}</Text>
       <View style={styles.horizontal_content}>
-        <Image source={{uri: tempPath}} style={styles.lil_image}/>
-        <Text style={styles.score}>{homeScore} - {opponentScore}</Text>
+        <Image source={{uri: homeLogo}} style={styles.lil_image}/>
+        <Text style={styles.score}>{game.homeScore} - {game.opponentScore}</Text>
         {/* <img src={tempPath} /> */}
-        <Image source={{uri:opponentlogo}} style={styles.lil_image}/>
+        <Image source={{uri: opponentLogo}} style={styles.lil_image}/>
       </View>
     </TouchableOpacity>
-  </View>
-)
+  </View>)}
 
 const dashboard = ({navigation}) => {
-  // const games = ([
-  //   {id: 1, title:'Alabama', date:'Nov 6, 2021', status:'upcoming', opponentlogo:require('./images/alabama.png'), homeScore:0, opponentScore:0, nav:navigation},
-  //   {id: 2, title:'Mississippi', date:'Nov 7, 2021', status:'upcoming', opponentlogo:require('./images/mississippi.png'), homeScore:0, opponentScore:0, nav:navigation}
-  // ])
-  const games = ([
-    {id: 1, title:'Alabama', date:'Nov 6, 2021', status:'upcoming', opponentlogo:'https://github.com/aggie-coding-club/Aggie-Ticket-Assistant/blob/main/components/images/alabama.png?raw=true', homeScore:0, opponentScore:0},
-    {id: 2, title:'Mississippi', date:'Nov 7, 2021', status:'upcoming', opponentlogo:'https://github.com/aggie-coding-club/Aggie-Ticket-Assistant/blob/main/components/images/mississippi.png?raw=true', homeScore:0, opponentScore:0}
-  ])
-  const renderDaItem = ({item}) => (
-    // <Game_znippet title={item.date} opponentlogo={require(`${item.opponentlogo}`)} homeScore={item.homeScore} opponentScore={item.opponentScore}/>
-    <Game_znippet title={item.title} date={item.date} opponentlogo={item.opponentlogo} homeScore={item.homeScore} opponentScore={item.opponentScore} navigation={item.nav}/>
-    )
-  return(
+  const [games, setGames] = useState([]);
 
+  useEffect(() => {
+    let isMounted = true;
+    get(dbRef).then((snapshot) => {
+      if(snapshot.exists()) {
+        setGames(snapshot.val().filter(e => e != undefined))
+        return snapshot.val()
+      }
+    });
+    return () => {isMounted = false};
+  },[]);
+  
+  if(games) console.log(games);
+
+  return(
     <View>
-      <Text style={styles.header}>Live</Text>
-      <View style={styles.line}/>
-      <Game_znippet title={'Live'} opponentlogo={'./images/new_mexico.png'} homeScore={69} opponentScore={0} navigation={navigation}/>
+      <Header />
+      {/* <Text style={styles.header}>Live</Text> */}
+      {/* <View style={styles.line}/> */}
+      {/* <Game_znippet title={'Live'} opponentlogo={require('./images/new_mexico.png')} homeScore={69} opponentScore={0} navigation={navigation}/> */}
       <Text style={styles.header}>Upcoming</Text>
       <View style={styles.line}/>
-      <FlatList data={games} renderItem = {({item}) => <Game_znippet title={item.title} date={item.date} opponentlogo={item.opponentlogo} homeScore={item.homeScore} opponentScore={item.opponentScore} navigation={navigation}/>}/>
+      <FlatList data={games} renderItem = {({item}) => <GameSnippet game={item} navigation={navigation} />}/>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
-  znippet: {
+  snippet: {
       height: 90,
       backgroundColor: '#dedede',
       padding: 20,
