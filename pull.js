@@ -28,7 +28,11 @@ for(var i = 0; i < pullers.length; i++) {classes.push(pullers[i].classification)
 if(classes.indexOf("G") > -1) { // For every puller w/ guest sports pass, cover guest, add to cost
     for(var i = 0; i < pullers.length; i++) {
         if(pullers[i] !== "G") { // Don't attempt match if coverer is a guest
-            if(pullers[i].passGuest && classes.indexOf("G") > -1) {ret.cost += game.cost; classes.splice(classes.indexOf("G"),1); reduced_pullers.splice(reduced_pullers.indexOf("G"),1)}
+            if(pullers[i].passGuest && classes.indexOf("G") > -1) {
+                ret.cost += game.cost;
+                classes.splice(classes.indexOf("G"),1);
+                reduced_pullers.splice(reduced_pullers.indexOf("G"),1)
+            }
         }
     }
 }
