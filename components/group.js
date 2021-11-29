@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import {View, Text, Image, StyleSheet, FlatList, Alert, Button,p} from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
-const Person = ({name, puller, classification, sports_pass, id, people, navigation}) => (
+const Person = ({name, puller, classification, sports_pass, id, people, navigation, person}) => (
     <View style={styles.person}>
         <View style={styles.puller_info}>
             <Text>{name}{puller}</Text>
@@ -13,7 +13,7 @@ const Person = ({name, puller, classification, sports_pass, id, people, navigati
         <TouchableOpacity style={styles.edit_button} onPress={() => navigation.navigate('Person Form', {
             navigation: navigation,
             people: people,
-            person_id: id
+            person: person
         })}>
         <Text style={{color:'#500000',fontSize:18, alignSelf: 'center'}}>Edit</Text>
         </TouchableOpacity>
@@ -29,7 +29,7 @@ const Group = ({route}) => {
                 <Text style={styles.text}>Group</Text>
             </View>
             <View style={styles.line}></View>
-            <FlatList data={pimples} renderItem={({item}) => <Person name={item.Name} puller={item.Puller} classification={item.Classification} sports_pass={item.SportsPass} id={item.id} people={pimples} navigation={navigation}/>}/>
+            <FlatList data={pimples} renderItem={({item}) => <Person name={item.Name} puller={item.Puller} classification={item.Classification} sports_pass={item.SportsPass} id={item.id} people={pimples} navigation={navigation} person={item}/>}/>
             <View style={styles.bottom}>
                 <TouchableOpacity style={styles.button} onPress = {() => navigation.navigate('Dashboard')}>
                     <Text style={styles.lil_text2}>Continue</Text>

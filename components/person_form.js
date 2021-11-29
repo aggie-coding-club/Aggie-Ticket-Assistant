@@ -2,9 +2,30 @@ import { NavigationContainer } from '@react-navigation/native';
 import React, { useState } from 'react';
 import {View, Text, Image, StyleSheet, FlatList, Alert, Button,p} from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+// import {Picker} from '@react-native-picker/picker';
 
 const Person_form = ({route}) => {
-    const {navigation, people, person_id} = route.params
+    const {navigation, people, person} = route.params
+    // for(var person of people) {
+    //   if(person.id == person_id){
+    //     setPerson(person)
+    //     setName(person.Name)
+    //     setClassif(person.Classification)
+    //     setPass(person.SportsPass)
+    //     currIndex = people.indexOf(person)
+    //     // console.log(person_id)
+    //   }
+    // }
+    const [currPerson, setPerson] = useState({})
+    const [currName, setName] = useState('')
+    const [currClassif, setClassif] = useState('')
+    const [currPass, setPass] = useState('')
+    // console.log(currPerson)
+    // console.log(currName)
+    // console.log(currClassif)
+    // console.log(currPass)
+    // console.log(currIndex)
+    const {classification, setClass} = useState()
     return (
         <View style={styles.topcontent}>
             <View style={styles.top_horiz}>
