@@ -6,28 +6,24 @@ import dashboard from './dashboard';
 import {getStorage, ref, getDownloadURL} from "firebase/storage";
 import {app} from "../firebase"
 
-const storage = getStorage();
-var header_url = 'http://placekitten.com/200/300';
-var headerRef = ref(storage, 'images/tamu_white.png');
-
-var result = getDownloadURL(headerRef);
-
-result.then((url) => {
-  header_url = url;
-  console.log("1 " + header_url)
-  return url; // TODO figure out a way to set image uri here
-}
-)
-
-console.log("2 " + header_url)
-
 const Header = ({navigation}) =>{
+  const storage = getStorage();
+  const [url, setUrl] = useState("")
+  var headerRef = ref(storage, 'images/tamu_white.png');
+  var result = getDownloadURL(headerRef);
+  
+  result.then((url) => {
+    setUrl(url);
+    return url; // TODO figure out a way to set image uri here
+  }
+  )
+
   return(
     <View style={styles.header}>
         <TouchableOpacity activeOpacity={0.5} onPress={() => 
                 navigation.navigate('Dashboard') 
             }>
-            <Image source={{uri: header_url}} style={styles.img}/>
+            <Image source={{uri: url}} style={styles.img}/>
         </TouchableOpacity>
     </View>
   );
