@@ -6,21 +6,24 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const before_game = ({route}) => {
   // const [imag, setImag] = useState([require('./rev0.jpg'), require('./rev1.jpg'), require('./rev2.jpg'), require('./rev3.jpg'), require('./rev4.jpg'), require('./rev5.jpg')])
-  const {randomParam, randomParam2, navigation} = route.params
+  const {game, navigation} = route.params
+  var isoDate = new Date(game.date)
+  var strDate = isoDate.toDateString()
+  console.log(game.opponentlogo+"   abc   ")
   return(
     <View>
         <View style={styles.topcontent}>
           <View style={styles.top_horiz}>
             <Text style={styles.text}>Texas A&M</Text>
-            <Text style={styles.text}>{randomParam}</Text>
+            <Text style={styles.text}>{game.title}</Text>
           </View>
           <View style={styles.top_horiz}>
-            <Image source={{uri: 'https://placekitten.com/200/300'}} style={styles.img}/>
+            <Image source={{uri: 'https://github.com/aggie-coding-club/Aggie-Ticket-Assistant/blob/main/components/images/tamu_red.png?raw=true'}} style={styles.img}/>
             <Text style={styles.lil_text}>vs.</Text>
-            <Image source={{uri: 'https://placekitten.com/200/300'}} style={styles.img}/>
+            <Image source={{uri: game.opponentlogo}} style={styles.img}/>
           </View>
           <View style={styles.top_horiz}>
-            <Text style={styles.text}>Nov 7, 2021</Text>
+            <Text style={styles.text}>{strDate}</Text>
           </View>
           <View style={styles.top_horiz}>
             <Text style={styles.text}>Kyle Field</Text>
@@ -28,7 +31,7 @@ const before_game = ({route}) => {
         </View>
         <Text style={styles.headText}>PULLING</Text>
         <View style={styles.line}/>
-        <TouchableOpacity style={styles.button} onPress = {() => navigation.navigate('Wizard landing', {navigation: navigation})}>
+        <TouchableOpacity style={styles.button} onPress = {() => navigation.navigate('Wizard landing', {navigation: navigation, game: game})}>
           <Text style={styles.lil_text2}>Get Pulling Info</Text>
         </TouchableOpacity>
     </View>

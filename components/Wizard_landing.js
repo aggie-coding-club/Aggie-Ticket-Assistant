@@ -4,7 +4,7 @@ import {View, Text, Image, StyleSheet, FlatList, Alert, Button,p} from 'react-na
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const Wizard_landing = ({route}) => {
-    const {navigation} = route.params
+    const {navigation, game} = route.params
     return (
         <View style={styles.topcontent}>
             <View style={styles.top_horiz}>
@@ -20,7 +20,8 @@ const Wizard_landing = ({route}) => {
                 </Text>
             </View>
             <TouchableOpacity style={styles.button} onPress = {() => navigation.navigate('Alone Group',{
-              navigation: navigation
+              navigation: navigation,
+              game: game
             })}>
                 <Text style={styles.lil_text2}>Get Started</Text>
             </TouchableOpacity>

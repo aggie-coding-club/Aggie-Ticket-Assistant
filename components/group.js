@@ -3,17 +3,18 @@ import React, { useState } from 'react';
 import {View, Text, Image, StyleSheet, FlatList, Alert, Button,p} from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
-const Person = ({name, puller, classification, sports_pass, id, people, navigation}) => (
+const Person = ({name, classification, pass, id, people, navigation, person, passGuest, student, corps, game}) => (
     <View style={styles.person}>
         <View style={styles.puller_info}>
-            <Text>{name}{puller}</Text>
+            <Text>{name}</Text>
             <Text>{classification}</Text>
-            <Text>{sports_pass}</Text>
+            <Text>{pass ? "Sports Pass":"No Sports Pass"}</Text>
         </View>
         <TouchableOpacity style={styles.edit_button} onPress={() => navigation.navigate('Person Form', {
             navigation: navigation,
             people: people,
-            person_id: id
+            person: person,
+            game: game
         })}>
         <Text style={{color:'#500000',fontSize:18, alignSelf: 'center'}}>Edit</Text>
         </TouchableOpacity>
@@ -21,20 +22,47 @@ const Person = ({name, puller, classification, sports_pass, id, people, navigati
 );
 
 const Group = ({route}) => {
-    const {people, navigation} = route.params
-    const [pimples, setPimples] = useState(people)
+    const {people, navigation, game} = route.params
+    // const [pimples, setPimples] = useState(people)
+
+    const addNewPerson = () => {
+        var newPerson = {}
+        newPerson.id = people[people.length-1].id + 1
+        newPerson.name = 'Person ' + String(newPerson.id)
+        newPerson.classification = ''
+        newPerson.pass = false
+        newPerson.passGuest = false
+        newPerson.student = false
+        newPerson.corps = false
+
+        people.push(newPerson)
+
+        navigation.navigate('Person Form', {
+            navigation: navigation,
+            people: people,
+            person: people[people.length - 1]
+        })
+    }
+
     return (
         <View style={styles.topcontent}>
             <View style={styles.top_horiz}>
                 <Text style={styles.text}>Group</Text>
             </View>
             <View style={styles.line}></View>
-            <FlatList data={pimples} renderItem={({item}) => <Person name={item.Name} puller={item.Puller} classification={item.Classification} sports_pass={item.SportsPass} id={item.id} people={pimples} navigation={navigation}/>}/>
+            <FlatList data={people} renderItem={({item}) => <Person name={item.name}s classification={item.classification} pass={item.pass} id={item.id} people={people} navigation={navigation} person={item} passGuest={item.passGuest} student={item.student} corps={item.corps} game={game}/>}/>
             <View style={styles.bottom}>
-                <TouchableOpacity style={styles.button} onPress = {() => navigation.navigate('Dashboard')}>
+                <TouchableOpacity style={styles.button} onPress = {() => navigation.navigate('Results',{
+                    navigation: navigation,
+                    people: people,
+                    game: game
+                })}>
                     <Text style={styles.lil_text2}>Continue</Text>
                 </TouchableOpacity>
             </View>
+            <TouchableOpacity style={styles.button} onPress = {() => addNewPerson()}>
+                    <Text style={styles.lil_text2}>Add Person</Text>
+                </TouchableOpacity>
         </View>
     );
 }
