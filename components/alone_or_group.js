@@ -4,30 +4,36 @@ import {View, Text, Image, StyleSheet, FlatList, Alert, Button,p} from 'react-na
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const Alone_Group = ({route}) => {
-    const {navigation} = route.params
+    const {navigation, game} = route.params
     const group_default = [
         {
             id: 1,
-            Name: 'Person 1',
-            Puller: ' - Puller',
-            Classification: 'Classification',
-            SportsPass: 'Sports Pass Status'
+            name: 'Person 1',
+            classification: 'Classification',
+            pass: 'Sports Pass Status',
+            passGuest: true,
+            student: true,
+            corps: false
         },
         {
             id: 2,
-            Name: 'Person 2',
-            Puller: '',
-            Classification: 'Classification',
-            SportsPass: 'Sports Pass Status'
+            name: 'Person 2',
+            classification: 'Classification',
+            pass: 'Sports Pass Status',
+            passGuest: true,
+            student: true,
+            corps: false
         }
     ]
     const alone_default = [
         {
             id: 1,
-            Name: 'Name',
-            Puller: ' - Puller',
-            Classification: 'Classification',
-            SportsPass: 'Sports Pass Status'
+            name: 'Person 1',
+            classification: 'Classification',
+            pass: 'Sports Pass Status',
+            passGuest: true,
+            student: true,
+            corps: false
         },
     ]
     return (
@@ -43,12 +49,14 @@ const Alone_Group = ({route}) => {
             <TouchableOpacity style={styles.button} onPress = {() => navigation.navigate('Group',{
                 people: alone_default,
                 navigation: navigation,
+                game: game
             })}>
                 <Text style={styles.lil_text2}>Alone</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.button} onPress = {() => navigation.navigate('Group',{
                 people: group_default,
-                navigation: navigation
+                navigation: navigation,
+                game: game
             })}>
                 <Text style={styles.lil_text2}>With Group</Text>
             </TouchableOpacity>

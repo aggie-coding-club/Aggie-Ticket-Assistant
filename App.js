@@ -28,6 +28,7 @@ import Wizard_landing from './components/Wizard_landing';
 import Alone_Group from './components/alone_or_group';
 import Group from './components/group';
 import Person_form from './components/person_form';
+import Results from './components/results';
 
 const Stack = createNativeStackNavigator();
 export default function App() {
@@ -62,6 +63,7 @@ export default function App() {
         <Stack.Screen name = "Alone Group" component={Alone_Group}/>
         <Stack.Screen name = "Group" component={Group}/>
         <Stack.Screen name = "Person Form" component={Person_form}/>
+        <Stack.Screen name = "Results" component={Results}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
