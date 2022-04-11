@@ -27,18 +27,18 @@ const Game_znippet = ({title, date, opponentlogo, homeScore, opponentScore, navi
 
 const dashboard = ({navigation}) => {
   const games = ([
-    {id: 1, date:"2021-10-09", cost: 65, opponentlogo:'https://github.com/aggie-coding-club/Aggie-Ticket-Assistant/blob/main/components/images/alabama.png?raw=true', homeScore:0, opponentScore:0, title:'Alabama',},
-    {id: 1, date:"2021-10-07", cost: 65, opponentlogo:'https://github.com/aggie-coding-club/Aggie-Ticket-Assistant/blob/main/components/images/mississippi.png?raw=true', homeScore:0, opponentScore:0, title:'Mississippi',},
+    {id: 1, date:"2021-10-09", cost: 65, opponentlogo:'https://github.com/aggie-coding-club/Aggie-Ticket-Assistant/blob/main/components/images/new_mexico.png?raw=true', homeScore:100, opponentScore:0, title:'New Mexico', live: true},
+    {id: 2, date:"2021-10-09", cost: 65, opponentlogo:'https://github.com/aggie-coding-club/Aggie-Ticket-Assistant/blob/main/components/images/alabama.png?raw=true', homeScore:0, opponentScore:0, title:'Alabama', live: false},
+    {id: 3, date:"2021-10-07", cost: 65, opponentlogo:'https://github.com/aggie-coding-club/Aggie-Ticket-Assistant/blob/main/components/images/mississippi.png?raw=true', homeScore:0, opponentScore:0, title:'Mississippi', live: false},
   ])
-  const renderDaItem = ({item}) => (
-  <Game_znippet title={item.title} date={item.date} opponentlogo={item.opponentlogo} homeScore={item.homeScore} opponentScore={item.opponentScore} navigation={item.nav}/>
-    )
+  // const renderDaItem = ({item}) => (
+  // <Game_znippet title={item.title} date={item.date} opponentlogo={item.opponentlogo} homeScore={item.homeScore} opponentScore={item.opponentScore} navigation={item.nav}/>
+  //   )
   return(
-
     <View>
-      <Text style={styles.header}>Live</Text>
-      <View style={styles.line}/>
-      <Game_znippet title={'Live'} opponentlogo={'./images/new_mexico.png'} homeScore={69} opponentScore={0} navigation={navigation}/>
+      {/* <Text style={styles.header}>Live</Text>
+      <View style={styles.line}/> */}
+      {/* <Game_znippet title={'Live'} opponentlogo={'./images/new_mexico.png'} homeScore={69} opponentScore={0} navigation={navigation}/> */}
       <Text style={styles.header}>Upcoming</Text>
       <View style={styles.line}/>
       <FlatList data={games} renderItem = {({item}) => <Game_znippet title={item.title} date={item.date} opponentlogo={item.opponentlogo} homeScore={item.homeScore} opponentScore={item.opponentScore} navigation={navigation} game={item}/>}/>
@@ -72,7 +72,8 @@ const styles = StyleSheet.create({
   },
   header: {
     fontSize: 24,
-    color: '#8f8f8f'
+    color: '#8f8f8f',
+    fontWeight: 'bold'
   },
   line:{
     height: 1,
