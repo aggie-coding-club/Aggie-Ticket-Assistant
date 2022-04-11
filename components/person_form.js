@@ -55,6 +55,7 @@ const Person_form = ({route}) => {
             <Picker
               selectedValue={currClassif}
               onValueChange={(value, index) => setClassif(value)}
+              itemStyle={{height:20}}
             >
               <Picker.Item label="Classificaction (G for guest)" value="Unknown" />
               <Picker.Item label="U1" value="U1" />

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { render } from 'react-dom';
-import {View, Text, Image, StyleSheet, Button} from 'react-native'
+import {View, Text, Image, StyleSheet, Button, Alert} from 'react-native'
 import { FlatList, TouchableOpacity } from 'react-native-gesture-handler';
 import before_game from './before-game';
 import Header from './Header';
@@ -25,9 +25,23 @@ const Game_znippet = ({title, date, opponentlogo, homeScore, opponentScore, navi
   </View>
 )
 
+const createAlert = () =>
+    Alert.alert(
+      "Alert Title",
+      "My Alert Msg",
+      [
+        {
+          text: "Cancel",
+          onPress: () => console.log("Cancel Pressed"),
+          style: "cancel"
+        },
+        { text: "OK", onPress: () => console.log("OK Pressed") }
+      ]
+    );
+
 const dashboard = ({navigation}) => {
   const games = ([
-    {id: 1, date:"2021-10-09", cost: 65, opponentlogo:'https://github.com/aggie-coding-club/Aggie-Ticket-Assistant/blob/main/components/images/new_mexico.png?raw=true', homeScore:100, opponentScore:0, title:'New Mexico', live: true},
+    {id: 1, date:"2021-10-09", cost: 65, opponentlogo:'https://github.com/aggie-coding-club/Aggie-Ticket-Assistant/blob/main/components/images/new_mexico.png?raw=true', homeScore:0, opponentScore:0, title:'New Mexico', live: true},
     {id: 2, date:"2021-10-09", cost: 65, opponentlogo:'https://github.com/aggie-coding-club/Aggie-Ticket-Assistant/blob/main/components/images/alabama.png?raw=true', homeScore:0, opponentScore:0, title:'Alabama', live: false},
     {id: 3, date:"2021-10-07", cost: 65, opponentlogo:'https://github.com/aggie-coding-club/Aggie-Ticket-Assistant/blob/main/components/images/mississippi.png?raw=true', homeScore:0, opponentScore:0, title:'Mississippi', live: false},
   ])
