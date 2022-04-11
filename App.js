@@ -23,7 +23,7 @@ const firebaseConfig = {
 import dashboard from './components/dashboard';
 import before_game from './components/before-game';
 import Header from './components/Header';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { TouchableOpacity } from 'react-native-gesture-handler'; //touchable opacity is our way of using buttons
 import Wizard_landing from './components/Wizard_landing';
 import Alone_Group from './components/alone_or_group';
 import Group from './components/group';
@@ -69,7 +69,7 @@ export default function App() {
   );
 }
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create({ //stylesheet
   container: {
     flex: 1,
     backgroundColor: '#fff',
