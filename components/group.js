@@ -1,6 +1,6 @@
 import { NavigationContainer } from '@react-navigation/native';
 import React, { useState } from 'react';
-import { View, Text, Image, StyleSheet, FlatList, Alert, Button, p } from 'react-native';
+import { View, Text, Image, StyleSheet, FlatList, ScrollView, SafeAreaView, Alert, Button, p } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const Person = ({ name, classification, pass, id, people, navigation, person, passGuest, student, corps, game }) => (
@@ -49,20 +49,22 @@ const Group = ({ route }) => {
             <View style={styles.top_horiz}>
                 <Text style={styles.text}>Group</Text>
             </View>
-            <View style={styles.line}></View>
-            <FlatList data={people} renderItem={({ item }) => <Person name={item.name} s classification={item.classification} pass={item.pass} id={item.id} people={people} navigation={navigation} person={item} passGuest={item.passGuest} student={item.student} corps={item.corps} game={game} />} />
-            <View style={styles.bottom}>
-                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Results', {
-                    navigation: navigation,
-                    people: people,
-                    game: game
-                })}>
-                    <Text style={styles.lil_text2}>Continue</Text>
+            <ScrollView>
+                <View style={styles.line}></View>
+                <FlatList data={people} renderItem={({ item }) => <Person name={item.name} s classification={item.classification} pass={item.pass} id={item.id} people={people} navigation={navigation} person={item} passGuest={item.passGuest} student={item.student} corps={item.corps} game={game} />} />
+                <View style={styles.bottom}>
+                    <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Results', {
+                        navigation: navigation,
+                        people: people,
+                        game: game
+                    })}>
+                        <Text style={styles.lil_text2}>Continue</Text>
+                    </TouchableOpacity>
+                </View>
+                <TouchableOpacity style={styles.button} onPress={() => addNewPerson()}>
+                    <Text style={styles.lil_text2}>Add Person</Text>
                 </TouchableOpacity>
-            </View>
-            <TouchableOpacity style={styles.button} onPress={() => addNewPerson()}>
-                <Text style={styles.lil_text2}>Add Person</Text>
-            </TouchableOpacity>
+            </ScrollView>
         </View>
     );
 }
