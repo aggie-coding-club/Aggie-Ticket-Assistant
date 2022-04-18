@@ -41,7 +41,7 @@ const before_game = ({route}) => {
 const styles = StyleSheet.create({
       text: {
         color: '#500000',
-        fontSize: 30,
+        fontSize: 26,
         fontWeight: 'bold'
       },
       headText: {
@@ -80,7 +80,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
         width: 250,
-        alignSelf: 'center'
+        alignSelf: 'center',
+        margin: 20
       },
       lil_text2: {
         color: '#ffffff',
