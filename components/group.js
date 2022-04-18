@@ -49,7 +49,7 @@ const Group = ({ route }) => {
             <View style={styles.top_horiz}>
                 <Text style={styles.text}>Group</Text>
             </View>
-            <ScrollView>
+            <ScrollView style={styles.scrollView}>
                 <View style={styles.line}></View>
                 <FlatList data={people} renderItem={({ item }) => <Person name={item.name} s classification={item.classification} pass={item.pass} id={item.id} people={people} navigation={navigation} person={item} passGuest={item.passGuest} student={item.student} corps={item.corps} game={game} />} />
                 <View style={styles.bottom}>
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     top_horiz: {
         flexDirection: 'row',
         justifyContent: 'space-around',
-        paddingVertical: 15,
+        paddingVertical: 1,
         alignContent: 'center',
         alignItems: 'center'
     },
@@ -140,6 +140,9 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'flex-end'
+    },
+    scrollView: {
+        margin: 20
     }
 })
 
