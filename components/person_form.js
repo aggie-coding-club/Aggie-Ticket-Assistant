@@ -32,6 +32,7 @@ const Person_form = ({route}) => {
 
     const onSelect = function(selectedItem, index) {
       console.log(selectedItem);
+      console.log(index);
     }
 
     const buttonTextAfterSelection = function(selectedItem, index) {
@@ -57,10 +58,11 @@ const Person_form = ({route}) => {
       newPerson.id = person.id
       newPerson.name = person.name
       newPerson.classification = currClassif
-      newPerson.pass = Boolean(currPass)
-      newPerson.passGuest = Boolean(currGuest)
-      newPerson.student = Boolean(currStud)
-      newPerson.corps = Boolean(currCorps)
+      newPerson.pass = currPass
+      newPerson.passGuest = currGuest
+      newPerson.student = currStud
+      newPerson.corps = currCorps
+      console.log(currClassif, currPass, currGuest, currStud, currCorps)
 
       people[currInd] = newPerson
       navigation.navigate('Group',{
@@ -78,34 +80,34 @@ const Person_form = ({route}) => {
             {/* TODO: have user object tracking current values, change onSelect functions for each dropdown to modify these values (maybe?) */}
             <SelectDropdown
             data={classificationValues}
-            onSelect={onSelect}
+            onSelect={(value, index) => setClassif(value)}
             buttonTextAfterSelection={buttonTextAfterSelection}
             rowTextForSelection={rowTextForSelection}
           />
 
             <SelectDropdown
             data={studentValues}
-            onSelect={onSelect}
+            onSelect={(value, index) => setStud(value)}
             buttonTextAfterSelection={buttonTextAfterSelection}
             rowTextForSelection={rowTextForSelection}
           />
 
 <SelectDropdown
             data={sportsPassStatus}
-            onSelect={onSelect}
+            onSelect={(value, index) => setPass(value)}
             buttonTextAfterSelection={buttonTextAfterSelection}
             rowTextForSelection={rowTextForSelection}
           />
 
 <SelectDropdown
             data={guestPassStatus}
-            onSelect={onSelect}
+            onSelect={(value, index) => setGuest}
             buttonTextAfterSelection={buttonTextAfterSelection}
             rowTextForSelection={rowTextForSelection}
           />
 <SelectDropdown
             data={corpsValues}
-            onSelect={onSelect}
+            onSelect={(value, index) => setCorps(value)}
             buttonTextAfterSelection={buttonTextAfterSelection}
             rowTextForSelection={rowTextForSelection}
           />

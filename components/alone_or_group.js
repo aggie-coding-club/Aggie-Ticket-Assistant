@@ -9,31 +9,31 @@ const Alone_Group = ({ route }) => {
         {
             id: 1,
             name: 'Person 1',
-            classification: 'Classification',
-            pass: 'Sports Pass Status',
-            passGuest: true,
-            student: true,
-            corps: false
+            classification: 'U1',
+            pass: 'No sports pass',
+            passGuest: "No guest pass",
+            student: "Not a student",
+            corps: "Not a corps member"
         },
         {
             id: 2,
             name: 'Person 2',
-            classification: 'Classification',
-            pass: 'Sports Pass Status',
-            passGuest: true,
-            student: true,
-            corps: false
+            classification: 'U1',
+            pass: 'No sports pass',
+            passGuest: "No guest pass",
+            student: "Not a student",
+            corps: "Not a corps member"
         }
     ]
     const alone_default = [
         {
             id: 1,
             name: 'Person 1',
-            classification: 'Classification',
-            pass: 'Sports Pass Status',
-            passGuest: true,
-            student: true,
-            corps: false
+            classification: 'U1',
+            pass: 'No sports pass',
+            passGuest: "No guest pass",
+            student: "Not a student",
+            corps: "Not a corps member"
         },
     ]
     return (

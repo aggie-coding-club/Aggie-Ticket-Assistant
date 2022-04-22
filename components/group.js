@@ -3,12 +3,14 @@ import React, { useState } from 'react';
 import { View, Text, Image, StyleSheet, FlatList, ScrollView, SafeAreaView, Alert, Button, p } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
-const Person = ({ name, classification, pass, id, people, navigation, person, passGuest, student, corps, game }) => (
+const Person = ({ people, navigation, person, game }) => (
     <View style={styles.person}>
         <View style={styles.puller_info}>
-            <Text>{name}</Text>
-            <Text>{classification}</Text>
-            <Text>{pass ? "Sports Pass" : "No Sports Pass"}</Text>
+            <Text>{person.name}</Text>
+            <Text>{person.classification}</Text>
+            <Text>{person.pass}</Text>
+            <Text>{person.passGuest}</Text>
+            <Text>{person.corps}</Text>
         </View>
         <TouchableOpacity style={styles.edit_button} onPress={() => navigation.navigate('Person Form', {
             navigation: navigation,
@@ -29,11 +31,11 @@ const Group = ({ route }) => {
         var newPerson = {}
         newPerson.id = people[people.length - 1].id + 1
         newPerson.name = 'Person ' + String(newPerson.id)
-        newPerson.classification = ''
-        newPerson.pass = false
-        newPerson.passGuest = false
-        newPerson.student = false
-        newPerson.corps = false
+        newPerson.classification = "U1"
+        newPerson.pass = "No sports Pass"
+        newPerson.passGuest = "No guest pass"
+        newPerson.student = "Not a student"
+        newPerson.corps = "Not a corps member"
 
         people.push(newPerson)
 
@@ -51,7 +53,7 @@ const Group = ({ route }) => {
             </View>
             <ScrollView style={styles.scrollView}>
                 <View style={styles.line}></View>
-                <FlatList data={people} renderItem={({ item }) => <Person name={item.name} s classification={item.classification} pass={item.pass} id={item.id} people={people} navigation={navigation} person={item} passGuest={item.passGuest} student={item.student} corps={item.corps} game={game} />} />
+                <FlatList data={people} renderItem={({ item }) => <Person people={people} navigation={navigation} person={item} game={game} />} />
                 <View style={styles.bottom}>
                     <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Results', {
                         navigation: navigation,
@@ -109,6 +111,7 @@ const styles = StyleSheet.create({
         width: 100,
         height: 40,
         alignSelf: 'center',
+        marginTop: 25
     },
     lil_text2: {
         color: '#ffffff',
@@ -121,7 +124,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#8f8f8f',
     },
     person: {
-        height: 90,
+        height: 130,
         backgroundColor: '#dedede',
         padding: 20,
         marginVertical: 8,
