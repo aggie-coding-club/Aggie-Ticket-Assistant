@@ -29,7 +29,7 @@ const Results = ({ route }) => {
             <View style={styles.top_horiz}>
                 <Text style={{ textAlign: 'center' }}>
                     <Text style={{ fontSize: 18, color: '#611921' }}>Line up around </Text>
-                    <Text style={{ fontSize: 18, color: '#611921', fontWeight: 'bold' }}>{new Date(resultData.early).toDateString()}</Text>
+                    <Text style={{ fontSize: 18, color: '#611921', fontWeight: 'bold' }}>{resultData.early}</Text>
                     <Text style={{ fontSize: 18, color: '#611921' }}> hours before the window opening at </Text>
                     <Text style={{ fontSize: 18, color: '#611921', fontWeight: 'bold' }}>8 am</Text>
                 </Text>
