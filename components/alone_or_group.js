@@ -5,6 +5,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const Alone_Group = ({ route }) => {
     const { navigation, game } = route.params
+    console.log("in alone_or_...", JSON.stringify(game))
     const group_default = [
         {
             id: 1,

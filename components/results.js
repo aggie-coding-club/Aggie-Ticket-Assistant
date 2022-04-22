@@ -6,7 +6,8 @@ import { Pull } from './pull.js'
 
 const Results = ({ route }) => {
     const { navigation, people, game } = route.params
-    // const resultData = Pull(game, people)
+    console.log(JSON.stringify(game))
+    const resultData = Pull(game, people)
     return (
         <View style={styles.topcontent}>
             <View style={styles.top_horiz}>
@@ -17,19 +18,19 @@ const Results = ({ route }) => {
                 <Text style={{ fontSize: 17, color: '#611921', textAlign: 'center', paddingHorizontal: 50 }}>According to your group, you should pull on:</Text>
             </View>
             <View style={styles.top_horiz}>
-                <Text style={{ fontSize: 27, color: '#783c3c', fontWeight: "bold" }}>TUESDAY, NOVEMBER 7</Text>
+                <Text style={{ fontSize: 27, color: '#783c3c', fontWeight: "bold" }}>{new Date(resultData.dateStart).toDateString()}</Text>
             </View>
             <View style={styles.top_horiz}>
                 <Text style={{ textAlign: 'center' }}>
-                    <Text style={{ fontSize: 18, color: '#611921' }}>You are most likely to be placed in the</Text>
-                    <Text style={{ fontSize: 18, color: '#611921', fontWeight: 'bold' }}> 2nd deck</Text>
+                    <Text style={{ fontSize: 18, color: '#611921' }}>You are most likely to be placed in deck </Text>
+                    <Text style={{ fontSize: 18, color: '#611921', fontWeight: 'bold' }}>{resultData.deck}</Text>
                 </Text>
             </View>
             <View style={styles.top_horiz}>
                 <Text style={{ textAlign: 'center' }}>
                     <Text style={{ fontSize: 18, color: '#611921' }}>Line up around </Text>
-                    <Text style={{ fontSize: 18, color: '#611921', fontWeight: 'bold' }}>3 to 4 hours </Text>
-                    <Text style={{ fontSize: 18, color: '#611921' }}>Before the window opening at </Text>
+                    <Text style={{ fontSize: 18, color: '#611921', fontWeight: 'bold' }}>{new Date(resultData.early).toDateString()}</Text>
+                    <Text style={{ fontSize: 18, color: '#611921' }}> hours before the window opening at </Text>
                     <Text style={{ fontSize: 18, color: '#611921', fontWeight: 'bold' }}>8 am</Text>
                 </Text>
             </View>
