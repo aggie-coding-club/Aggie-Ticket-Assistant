@@ -25,6 +25,7 @@ const Person = ({ people, navigation, person, game }) => (
 
 const Group = ({ route }) => {
     const { people, navigation, game } = route.params
+    console.log("in group.js..", JSON.stringify(game))
     // const [pimples, setPimples] = useState(people)
 
     const addNewPerson = () => {
@@ -42,7 +43,8 @@ const Group = ({ route }) => {
         navigation.navigate('Person Form', {
             navigation: navigation,
             people: people,
-            person: people[people.length - 1]
+            person: people[people.length - 1],
+            game: game
         })
     }
 

@@ -1,6 +1,7 @@
 export function Pull(game, pullers) {
         // Example of pullers:
         // [{"classification": "U4", "pass": true, "passGuest": true, "student": true, "corps": false}, {}...]
+    console.log(JSON.stringify(game));
     type = "corps" // Corps initially; set to normal if 1+ non corps member
     ret = { // Initial return values
         date: "",
@@ -69,7 +70,7 @@ export function Pull(game, pullers) {
             beg_time.setHours(gameday.getHours() + 8)
             end_time.setHours(gameday.getHours() + 12)    
         } else {
-            beg_time.setHpurs(gameday.getHours() + 12)
+            beg_time.setHours(gameday.getHours() + 12)
             end_time.setHours(gameday.getHours() + 17)
         }
     }
