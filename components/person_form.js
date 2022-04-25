@@ -78,39 +78,44 @@ const Person_form = ({route}) => {
             </View>
 
             {/* TODO: have user object tracking current values, change onSelect functions for each dropdown to modify these values (maybe?) */}
-            <SelectDropdown
-            data={classificationValues}
-            onSelect={(value, index) => setClassif(value)}
-            buttonTextAfterSelection={buttonTextAfterSelection}
-            rowTextForSelection={rowTextForSelection}
-          />
+          <Text style={styles.textSmall}>Classification</Text>
+          <SelectDropdown
+          data={classificationValues}
+          onSelect={(value, index) => setClassif(value)}
+          buttonTextAfterSelection={buttonTextAfterSelection}
+          rowTextForSelection={rowTextForSelection}
+        />
+          <Text style={styles.textSmall}>Student or not</Text>
+          <SelectDropdown
+          data={studentValues}
+          onSelect={(value, index) => setStud(value)}
+          buttonTextAfterSelection={buttonTextAfterSelection}
+          rowTextForSelection={rowTextForSelection}
+        />
 
-            <SelectDropdown
-            data={studentValues}
-            onSelect={(value, index) => setStud(value)}
-            buttonTextAfterSelection={buttonTextAfterSelection}
-            rowTextForSelection={rowTextForSelection}
-          />
-
-<SelectDropdown
-            data={sportsPassStatus}
-            onSelect={(value, index) => setPass(value)}
-            buttonTextAfterSelection={buttonTextAfterSelection}
-            rowTextForSelection={rowTextForSelection}
-          />
-
-<SelectDropdown
-            data={guestPassStatus}
-            onSelect={(value, index) => setGuest}
-            buttonTextAfterSelection={buttonTextAfterSelection}
-            rowTextForSelection={rowTextForSelection}
-          />
-<SelectDropdown
-            data={corpsValues}
-            onSelect={(value, index) => setCorps(value)}
-            buttonTextAfterSelection={buttonTextAfterSelection}
-            rowTextForSelection={rowTextForSelection}
-          />
+          <Text style={styles.textSmall}>Sports pass status</Text>
+          <SelectDropdown
+                      data={sportsPassStatus}
+                      onSelect={(value, index) => setPass(value)}
+                      buttonTextAfterSelection={buttonTextAfterSelection}
+                      rowTextForSelection={rowTextForSelection}
+                    />
+          
+          <Text style={styles.textSmall}>Guest pass</Text>
+          <SelectDropdown
+                      data={guestPassStatus}
+                      onSelect={(value, index) => setGuest}
+                      buttonTextAfterSelection={buttonTextAfterSelection}
+                      rowTextForSelection={rowTextForSelection}
+                    />
+                    
+          <Text style={styles.textSmall}>Corps or not</Text>
+          <SelectDropdown
+                      data={corpsValues}
+                      onSelect={(value, index) => setCorps(value)}
+                      buttonTextAfterSelection={buttonTextAfterSelection}
+                      rowTextForSelection={rowTextForSelection}
+                    />
             {/* <Picker
               selectedValue={currClassif}
               onValueChange={(value, index) => setClassif(value)}
@@ -170,7 +175,8 @@ const styles = StyleSheet.create({
     topcontent: {
         flexDirection: 'column',
         justifyContent: 'flex-start',
-        padding: 30
+        padding: 30,
+        alignItems: 'center'
       },
       top_horiz: {
         flexDirection: 'row',
@@ -182,6 +188,11 @@ const styles = StyleSheet.create({
       text: {
         color: '#500000',
         fontSize: 30,
+        fontWeight: 'bold'
+      },
+      textSmall: {
+        color: '#500000',
+        fontSize: 18,
         fontWeight: 'bold'
       },
       lil_text: {

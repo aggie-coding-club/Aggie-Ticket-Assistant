@@ -41,7 +41,7 @@ const createAlert = () =>
 
 const dashboard = ({navigation}) => {
   const games = ([
-    {id: 1, date:"2021-10-09", cost: 65, opponentlogo:'https://github.com/aggie-coding-club/Aggie-Ticket-Assistant/blob/main/components/images/new_mexico.png?raw=true', homeScore:0, opponentScore:0, title:'New Mexico', live: true},
+    {id: 1, date:"2022-04-30", cost: 65, opponentlogo:'https://github.com/aggie-coding-club/Aggie-Ticket-Assistant/blob/main/components/images/new_mexico.png?raw=true', homeScore:0, opponentScore:0, title:'New Mexico', live: true},
     {id: 2, date:"2021-10-09", cost: 65, opponentlogo:'https://github.com/aggie-coding-club/Aggie-Ticket-Assistant/blob/main/components/images/alabama.png?raw=true', homeScore:0, opponentScore:0, title:'Alabama', live: false},
     {id: 3, date:"2021-10-07", cost: 65, opponentlogo:'https://github.com/aggie-coding-club/Aggie-Ticket-Assistant/blob/main/components/images/mississippi.png?raw=true', homeScore:0, opponentScore:0, title:'Mississippi', live: false},
   ])
